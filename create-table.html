@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 0;
+        }
+        .buttons-block {
+            width: 80%;
+            margin: 3% auto;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        button {
+            margin-bottom: 50px;
+            padding: 30px;
+            border: none;
+            transition: all .3s ease;
+            text-transform: uppercase;
+            cursor: pointer;
+        }
+
+        button:active, button:focus {
+            outline: none;
+        }
+
+        .button1, .button2 {
+            color: #ffffff;
+            background: linear-gradient(to right, #1ABC9C, #16A085, #1ABC9C);
+            background-size: 200%;
+        }
+
+        .button1:hover, .button2:hover {
+            box-shadow: 0 10px 20px rgba(22, 160, 133, 0.6), 0 6px 12px rgba(22, 160, 133, 0.7);
+            background-position: 100% 0;
+        }
+
+        .button1:active, .button2:active {
+            background-position: 0 100%;
+            box-shadow: 0 0 20px rgb(28, 221, 115) inset, 0 0 12px rgba(28, 221, 115) inset;
+        }
+
+        .button2 {
+            border-radius: 50%;
+            display: none;
+        }
+
+        .button3 {
+            color: #1ABC9C;
+            border: solid 3px #1ABC9C;
+            background: linear-gradient(to right, rgba(26, 188, 156, 0), rgba(26, 188, 156, 0), #1ABC9C, #16A085);
+            background-size: 300%;
+            border-radius: 20px;
+            display: none;
+        }
+
+        .button3:hover {
+            color: #ffffff;
+            box-shadow: 0 10px 20px rgba(22, 160, 133, 0.38), 0 6px 6px rgba(22, 160, 133, 0.46);
+            background-position: 100%;
+        }
+
+        .button3:active {
+            color: #ffffff;
+            background: linear-gradient(to right, #cb16d1, #9d0aca, rgba(26, 188, 156, 0), rgba(26, 188, 156, 0));
+            background-size: 300%;
+            background-position: 0;
+        }
+
+        table {
+            margin: 0 auto;
+            border-collapse: collapse;
+            text-align: center;
+            font-size: 18px;
+        }
+
+        table td {
+            border: 1px solid black;
+            width: 60px;
+            height: 60px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="buttons-block">
+        <button class="button1" onclick="tableCreate();">Создать таблицу</button>
+        <button class="button2" onclick="buttonHide();">Скрыть таблицу</button>
+        <button class="button3" onclick="buttonShow();">Показать таблицу</button>
+    </div>
+
+    <script>
+        function tableCreate(){
+            let cells = +prompt("Введите количество строк")
+            while (isNaN(cells) || cells == "" || cells < 0) {
+                alert ("Вы ввели некорректные данные");
+                cells = +prompt("Введите количество строк");
+            }
+            while (cells > 10) {
+                alert ("Введите число меньше 10 или 10");
+                cells = +prompt("Введите количество строк");
+            }
+            
+            let body = document.body,
+                tbl  = document.createElement("table");
+
+            for(let i = 0; i < cells; i++){
+                let tr = tbl.insertRow();
+                for(let j = 0; j < cells; j++){
+                    let td = tr.insertCell();
+                    td.appendChild(document.createTextNode(i+1 + ":" + (j+1)));
+                    if (i == j) {
+                        td.style.backgroundColor = "red";
+                    }
+                }
+            }
+            body.appendChild(tbl);
+
+            let button1 = document.querySelector(".button1");
+            button1.disabled = true;
+            let button2 = document.querySelector(".button2");
+            let button3 = document.querySelector(".button3");
+            button2.style.display = "block";
+            button3.style.display = "block";
+
+        }
+
+        function buttonHide() {
+            tableHide = document.getElementsByTagName("table")[0];
+            tableHide.style.display = "none";
+        }
+        
+        function buttonShow() {
+            tableShow = document.getElementsByTagName("table")[0];
+            tableShow.style.display = "table";
+        }  
+    </script>
+</body>
+</html>
