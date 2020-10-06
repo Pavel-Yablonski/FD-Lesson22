@@ -95,14 +95,14 @@
 
     <script>
         function tableCreate(){
-            let cells = +prompt("Введите количество строк")
+            let cells = +prompt("Введите количество ячеек")
             while (isNaN(cells) || cells == "" || cells < 0) {
                 alert ("Вы ввели некорректные данные");
-                cells = +prompt("Введите количество строк");
+                cells = +prompt("Введите количество ячеек");
             }
             while (cells > 10) {
                 alert ("Введите число меньше 10 или 10");
-                cells = +prompt("Введите количество строк");
+                cells = +prompt("Введите количество ячеек");
             }
             
             let body = document.body,
