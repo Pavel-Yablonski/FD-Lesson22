@@ -108,9 +108,9 @@
             let body = document.body,
                 tbl  = document.createElement("table");
 
-            for(let i = 0; i < cells; i++){
+            for (let i = 0; i < cells; i++){
                 let tr = tbl.insertRow();
-                for(let j = 0; j < cells; j++){
+                for (let j = 0; j < cells; j++){
                     let td = tr.insertCell();
                     td.appendChild(document.createTextNode(i+1 + ":" + (j+1)));
                     if (i == j) {
@@ -119,6 +119,7 @@
                     }
                 }
             }
+            
             body.appendChild(tbl);
 
             let button1 = document.querySelector(".button1");
